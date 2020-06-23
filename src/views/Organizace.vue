@@ -105,7 +105,6 @@ export default {
       twoLine: true,
       avatar: true,
       indexOrg: 0,
-      organizace: organizace,
     };
   },
 };
