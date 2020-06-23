@@ -23,7 +23,10 @@
 
               <v-list-item-content>
                 <v-list-item-title v-html="item.title"></v-list-item-title>
-                <v-list-item-subtitle v-if="twoLine || threeLine" v-html="item.segment.name"></v-list-item-subtitle>
+                <v-list-item-subtitle
+                  v-if="twoLine || threeLine"
+                  v-html="item.segment.name"
+                ></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -36,31 +39,42 @@
     </div>
 
     <div class="organisations__mobile">
-      <v-btn large to="/registrace-organizace" color="#00728f" dark rounded small class="addOrg">
+      <v-btn
+        large
+        to="/registrace-organizace"
+        color="#00728f"
+        dark
+        rounded
+        small
+        class="addOrg"
+      >
         <v-icon>mdi-plus</v-icon>Přidej svou organizaci
       </v-btn>
 
-      <orgcardmobile v-for="(item, i) in organisations" :key="i" :organizace="item" />
+      <orgcardmobile
+        v-for="(item, i) in organisations"
+        :key="i"
+        :organizace="item"
+      />
     </div>
   </v-container>
 </template>
 
 <script>
 import OrgCard from "./../components/OrgCard.vue";
-import organizace from "./../assets/data/organizace.js";
 import OrgCardMobile from "./../components/OrgCardMobile.vue";
 import { Mutations } from "./../store";
 
 export default {
   components: {
     orgcard: OrgCard,
-    orgcardmobile: OrgCardMobile
+    orgcardmobile: OrgCardMobile,
   },
 
   methods: {
     chooseOrganisation(id) {
       this.$store.commit(Mutations.SET_SELECTED_ORGANISATION, id);
-    }
+    },
   },
 
   computed: {
@@ -70,7 +84,7 @@ export default {
 
     selectedOrganisation() {
       return this.$store.getters.getSelectedOrganisationId;
-    }
+    },
 
     // organizaceSorted(){
     //     return this.organizace.sort((a,b) => {
@@ -91,14 +105,13 @@ export default {
       twoLine: true,
       avatar: true,
       indexOrg: 0,
-      organizace: organizace
+      organizace: organizace,
     };
-  }
+  },
 };
 </script>
 
 <style>
-
 .organisations__desktop {
   display: none;
 }
